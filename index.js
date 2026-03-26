@@ -23,9 +23,9 @@ function search(dict, word) {
   return res;
 }
 
-function addWordsToTrieTree(){
-  word
-}
+// function addWordsToTrieTree(){
+//   word
+// }
 
 function displayWords(words) {
   wordDisplay.innerHTML = words.map((word) => `<p>${word}</p>`).join("");
