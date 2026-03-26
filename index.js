@@ -1,4 +1,4 @@
-import { WordDictionary } from "./wordDict";
+// import { WordDictionary } from "./wordDict";
 
 let wordDict = [];
 
