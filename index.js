@@ -1,10 +1,18 @@
-const wordDict = ["and", "or", "not"];
+let wordDict = [];
+
+fetch("words.txt")
+  .then((r) => r.text())
+  .then((text) => {
+    wordDict = text.split("\n");
+    displayWords(wordDict);
+  });
+
 
 function search(dict, word) {
   let res = [];
   for (let i = 0; i < dict.length; i++) {
     if (
-      (dict[i].include(word) && dict[i].length > word.length) ||
+      (dict[i].includes(word) && dict[i].length > word.length) ||
       dict[i] === word
     ) {
       res.push(dict[i]);
@@ -13,13 +21,14 @@ function search(dict, word) {
   return res;
 }
 
-const searchInput = document.querySelector("#searchInput"); 
+function displayWords(words) {
+  wordDisplay.innerHTML = words.map((word) => `<p>${word}</p>`).join("");
+}
+
+
+const searchInput = document.querySelector("#searchInput");
 const searchButton = document.querySelector("#searchButton");
 const wordDisplay = document.querySelector("#wordDisplay");
-
-for (let i = 0; i < wordDict.length; i++) {
-  wordDisplay.innerHTML += `<p>${wordDict[i]}</p>`;
-}
 
 searchButton.addEventListener("click", () => {
   const query = searchInput.value.trim();
