@@ -1,4 +1,7 @@
-# To Run Dev
+# Electron Dictionary/Autocorrect App
+purely to showcase functionality
+
+### To Run Dev
 
 Run app ->
 npm run start 
