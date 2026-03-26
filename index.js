@@ -1,3 +1,5 @@
+import { WordDictionary } from "./wordDict";
+
 let wordDict = [];
 
 fetch("words.txt")
@@ -19,6 +21,10 @@ function search(dict, word) {
     }
   }
   return res;
+}
+
+function addWordsToTrieTree(){
+  word
 }
 
 function displayWords(words) {
