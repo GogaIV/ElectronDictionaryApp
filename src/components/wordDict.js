@@ -7,7 +7,7 @@ export class WordDictionary{
   #root;
 
   constructor(){
-    this.#root = Node();
+    this.#root = new Node();
   }
 
   addWord(word){
@@ -15,7 +15,7 @@ export class WordDictionary{
     const a = 'a';
 
     for (let i = 0; i < word.length; i++){
-      idx = word.charCodeAt(0) - a.charCodeAt(0);
+      let idx = word.charCodeAt(i) - a.charCodeAt(0);
       if (!curr.children[idx]){
         curr.children[idx] = new Node();
       }
@@ -25,8 +25,8 @@ export class WordDictionary{
   }
 
   search(word){
-    curr = this.#root;
-    res = []
+    let curr = this.#root;
+    let res = []
 
     for (let i = 0; i < word.length; i++){
 

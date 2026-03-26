@@ -16,7 +16,7 @@
   "main": "app.js",
   "scripts": {
     "start": "electron .",
-    "watch:css":"npx @tailwindcss/cli -i ./input.css -o ./output.css --watch",
+    "watch:css": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

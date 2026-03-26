@@ -1,14 +1,13 @@
-// import { WordDictionary } from "./wordDict";
+// import { WordDictionary } from "./components/wordDict.js";
 
 let wordDict = [];
 
-fetch("words.txt")
+fetch("./words.txt")
   .then((r) => r.text())
   .then((text) => {
     wordDict = text.split("\n");
     displayWords(wordDict);
   });
-
 
 function search(dict, word) {
   let res = [];
