@@ -1,2 +1,8 @@
-# ElectronDictionaryApp
-[In Progress] Dictionary and Search function in Electron framework. Repersentation of my skills
+# To Run Dev
+
+Run app ->
+npm run start 
+
+Update tailwind css during development ->
+npm run watch:css 
+
