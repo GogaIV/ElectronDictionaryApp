@@ -6,7 +6,12 @@ fetch("./words.txt")
   .then((r) => r.text())
   .then((text) => {
     wordDict = text.split("\n");
+
+    // Im commenting this out when testing cuz load takes too long
+    // Must find way to save into mem after make trie tree
+
     displayWords(wordDict);
+    // displayWords(["hello", "and", "test", "no", "yes"]);
   });
 
 function search(dict, word) {
@@ -22,8 +27,10 @@ function search(dict, word) {
   return res;
 }
 
-function displayWords(words) {
-  wordDisplay.innerHTML = words.map((word) => `<p>${word}</p>`).join("");
+const idx = 0
+
+function displayWords(words, idx = 0) {
+  wordDisplay.innerHTML = words.slice(idx, idx + 20).map((word) => `<p>${word}</p>`).join("");
 }
 
 const searchInput = document.querySelector("#searchInput");
@@ -34,8 +41,12 @@ searchButton.addEventListener("click", () => {
   const query = searchInput.value.trim();
   if (query) {
     const res = search(wordDict, query);
-    wordDisplay.innerHTML = res.map((word) => `<p>${word}</p>`).join("");
+    if (res.length == 0){
+      wordDisplay.innerHTML = `<p>No Result Found</p>`;  
+    } else {
+      wordDisplay.innerHTML = res.map((word) => `<p>${word}</p>`).join("");
+    }
   } else {
-    wordDisplay.innerHTML = wordDict.map((word) => `<p>${word}</p>`).join("");
+    displayWords(wordDict);
   }
 });
