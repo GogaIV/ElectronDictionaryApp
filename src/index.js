@@ -1,6 +1,11 @@
 // import { WordDictionary } from "./components/wordDict.js";
 
 let wordDict = [];
+let idx = 20
+const searchInput = document.querySelector("#searchInput");
+const searchButton = document.querySelector("#searchButton");
+const wordDisplay = document.querySelector("#wordDisplay");
+const moreWordsButton = document.querySelector("#moreWordsButton");
 
 fetch("./words.txt")
   .then((r) => r.text())
@@ -11,7 +16,6 @@ fetch("./words.txt")
     // Must find way to save into mem after make trie tree
 
     displayWords(wordDict);
-    // displayWords(["hello", "and", "test", "no", "yes"]);
   });
 
 function search(dict, word) {
@@ -27,26 +31,35 @@ function search(dict, word) {
   return res;
 }
 
-const idx = 0
 
-function displayWords(words, idx = 0) {
-  wordDisplay.innerHTML = words.slice(idx, idx + 20).map((word) => `<p>${word}</p>`).join("");
+function displayWords(words) {
+  wordDisplay.innerHTML = words
+    .slice(0, idx)
+    .map((word) => `<p>${word}</p>`)
+    .join("");
 }
 
-const searchInput = document.querySelector("#searchInput");
-const searchButton = document.querySelector("#searchButton");
-const wordDisplay = document.querySelector("#wordDisplay");
+
+moreWordsButton.addEventListener("click", () => {
+  idx += 20;
+  displayWords(wordDict, idx);
+});
 
 searchButton.addEventListener("click", () => {
   const query = searchInput.value.trim();
+
   if (query) {
     const res = search(wordDict, query);
-    if (res.length == 0){
-      wordDisplay.innerHTML = `<p>No Result Found</p>`;  
+    document.getElementById("moreWordsButton").style.display = "none";
+    if (res.length == 0) {
+      wordDisplay.innerHTML = `<p>No Result Found</p>`;
     } else {
-      wordDisplay.innerHTML = res.map((word) => `<p>${word}</p>`).join("");
+      wordDisplay.innerHTML = res.slice(0, 22).map((word) => `<p>${word}</p>`).join("");
     }
   } else {
+    idx = 20; 
     displayWords(wordDict);
+    console.log(idx);
+    document.getElementById("moreWordsButton").style.display = "block";
   }
 });
